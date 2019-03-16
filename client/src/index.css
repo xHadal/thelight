@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Inter UI';
+    font-style: normal;
+    font-weight: 400;
+    src: url(./fonts/Inter-UI-Regular.woff2) format("woff2"),
+         url(./fonts/Inter-UI-Regular.woff) format("woff");
+  }
+  
+@font-face {
+    font-family: 'Inter UI';
+    font-style: normal;
+    font-weight: 700;
+    src: url(./fonts/Inter-UI-Bold.woff2) format("woff2"),
+        url(./fonts/Inter-UI-Bold.woff) format("woff");
+}
+
+body {
+    margin: 0;
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+    overflow: hidden;
+}
+
+ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+}
