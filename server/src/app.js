@@ -1,6 +1,6 @@
 import express from 'express';
 import logger from 'morgan';
-
+import { connect } from './config/db';
 
 
 const app = express();
