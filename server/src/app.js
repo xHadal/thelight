@@ -4,6 +4,9 @@ import logger from 'morgan';
 import { connect } from './config/db';
 import { restRouter } from './api/index';
 
+import passport from 'passport';
+import { configJWTStrategy } from './api/middlewares/passport-jwt';
+
 
 connect();
 
@@ -13,6 +16,8 @@ const PORT = 8079;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(logger('dev'));
+app.use(passport.initialize()); // req.user
+configJWTStrategy();
 
 
 // TODO: only development mode

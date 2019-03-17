@@ -33,5 +33,8 @@ export default {
 
 			})
 			.catch(err => console.log(err));
+	},
+	authenticate(req, res) {
+		return res.json(req.user);
 	}
 }
