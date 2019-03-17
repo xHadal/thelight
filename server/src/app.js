@@ -1,7 +1,11 @@
 import express from 'express';
 import logger from 'morgan';
-import { connect } from './config/db';
 
+import { connect } from './config/db';
+import { restRouter } from './api/index';
+
+
+connect();
 
 const app = express();
 const PORT = 8079;
@@ -18,10 +22,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/api/hello', (req, res) => {
-  res.send({ message: 'Hi from Fool-stuck server' });
-});
-
+app.use('/api', restRouter);
 app.use((req, res, next) => {
   const error = new Error('Not found');
   error.message = 'Invalid route';

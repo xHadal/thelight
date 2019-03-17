@@ -16,7 +16,6 @@
 
 
 
-@charset "utf-8";
 /* CSS Document */
 
 html,
@@ -97,10 +96,6 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   cursor: default;
   overflow: hidden;
 }
