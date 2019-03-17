@@ -5,7 +5,7 @@ import {
   Route,
   Link,
 } from 'react-router-dom';
-
+import Register from './Register';
 
 const Container = styled.div`
   text-align: center;
@@ -75,18 +75,21 @@ class App extends Component {
     const { data } = this.state;
 
     return (
-      <Router>
-        <Container>
-          <div>
-            <h1>{data}</h1>
-            <Navbar />
-            <Route path="/" exact component={Index} />
-            <Route path="/about/" exact component={About} />
-            <Route path="/users/" exact component={Users} />
-          </div>
-        </Container>
-      </Router>
-
+      <div>
+        <Router>
+          <Container>
+            <div>
+              <h1>{data}</h1>
+              <Navbar />
+              <Route path="/" exact component={Index} />
+              <Route path="/about/" exact component={About} />
+              <Route path="/users/" exact component={Users} />
+              
+            </div>
+          </Container>
+        </Router>
+        <Register/>
+      </div>
     );
   }
 }
