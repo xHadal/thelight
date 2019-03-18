@@ -4,12 +4,12 @@ import jwt from '../../helpers/jwt';
 
 export default {
 	signup(req, res) {
+		console.log(req.body);
 		const { value, error } = userService.validateSignup(req.body);
 		if (error) return res.status(400).json(error);
 		const encryptedPass = userService.encryptPassword(value.password);
 		User.create({
 			firstName: value.firstName,
-			lastName: value.lastName,
 			email: value.email,
 			password: encryptedPass,
 		})

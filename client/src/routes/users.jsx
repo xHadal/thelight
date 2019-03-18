@@ -12,44 +12,69 @@ const Container = styled.div`
 class Users extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      firstName: '',
+      email: '',
+      password: '',
+    };
   }
 
-  componentDidMount() {
+  handleChange({ field, value }) {
+    this.setState({
+      [field]: value
+    });
   }
 
   callApi() {
-    // fetch(`${__API__}hello`)
-    //   .then((resp) => {
-    //     if (!resp.ok) {
-    //       console.log('Error', resp.status);
-    //     }
-    //     return resp.json();
-    //   })
-    //   .then((data) => {
-    //     this.setState({
-    //       data: data.message,
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     throw Error('Couldn\'t fetch'.concat(err));
-    //   });
+    fetch(`${__API__}users/signup`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw Error('Error', resp.status);
+        }
+        console.log(resp);
+        return resp;
+      })
+      .catch((err) => {
+        throw Error('Couldn\'t fetch'.concat(err));
+      });
   }
 
   render() {
+    const { data } = Users;
 
     return (
       <Container>
-        <Input
-            name="User Name"
-            type="text"
-        />
-        <Input
-            name="User Mail"
-            type="text"
-        />
+        {
+          data.map(({
+            name,
+            field
+          }) => (
+              <Input
+                name={name}
+                key={field}
+                type="text"
+                onChange={({
+                  target: {
+                    value
+                  }
+                }) => this.handleChange({
+                  field,
+                  value,
+                })}
+              />
+            )
+          )
+        }
         <Button
             type="button"
-            onClick={e => console.log(e)}
+            onClick={() => this.callApi()}
         >
             Aceptar
         </Button>
@@ -57,4 +82,19 @@ class Users extends Component {
     );
   }
 }
+
+Users.data = [
+  {
+    name: 'User Name',
+    field: 'firstName'
+  },{
+    name: 'User Mail',
+    field: 'email',
+  },{
+    name: 'User Password',
+    field: 'password',
+  }
+];
+
+
 export default Users;
