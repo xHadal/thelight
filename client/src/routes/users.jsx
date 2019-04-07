@@ -16,8 +16,8 @@ class Users extends Component {
       firstName: '',
       email: '',
       password: '',
+      token: '',
     };
-    this.token = '';
   }
 
   handleChange({ field, value }) {
