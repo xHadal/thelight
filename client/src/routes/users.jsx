@@ -17,6 +17,7 @@ class Users extends Component {
       email: '',
       password: '',
     };
+    this.token = '';
   }
 
   handleChange({ field, value }) {
@@ -26,6 +27,7 @@ class Users extends Component {
   }
 
   callApi() {
+    const ctx = this;
     fetch(`${__API__}users/signup`, {
       method: 'POST',
       headers: {
@@ -38,8 +40,13 @@ class Users extends Component {
         if (!resp.ok) {
           throw Error('Error', resp.status);
         }
-        console.log(resp);
-        return resp;
+        return resp.json()
+      })
+      .then(({ token }) => {
+        ctx.setState({
+          ...ctx.state,
+          token,
+        });
       })
       .catch((err) => {
         throw Error('Couldn\'t fetch'.concat(err));

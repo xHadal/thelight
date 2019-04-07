@@ -1,10 +1,10 @@
 import userService from './user.service';
 import User from './user.model';
 import jwt from '../../helpers/jwt';
+import { resolve } from 'url';
 
 export default {
 	signup(req, res) {
-		console.log(req.body);
 		const { value, error } = userService.validateSignup(req.body);
 		if (error) return res.status(400).json(error);
 		const encryptedPass = userService.encryptPassword(value.password);
@@ -13,7 +13,11 @@ export default {
 			email: value.email,
 			password: encryptedPass,
 		})
-			.then(user => res.json({ success: true }))
+			.then(user => {
+				const token = jwt.issue({ id: user._id }, '1d');
+				return token;
+			})
+			.then(token => res.json({ token }))
 			.catch(err => res.status(500).send(err));
 	},
 	login(req, res) {
