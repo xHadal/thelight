@@ -2,32 +2,36 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Button from '@/components/UI/button';
 import Input from '@/components/UI/input';
-
+/* global? */
 const MainWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   min-height: 100%;
   height: 100vh;
+
   >div{
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-grow:1;
     flex-basis: 50%;
-    
+    transition: all 0.5s; 
   }
+
   >.content-wrapper__side-b{
     background: #ff4b7d;
     color: #fff;
     font-size: 25px;
     font-weight: bold;
   }
-  
 `;
 const Container = styled.div`
   text-align: center;
   font-family: 'Inter UI';
 `;
-
+/* global? */
+const Title = styled.h1`
+  font-size: 42px;
+`
 
 class Users extends Component {
   constructor(props) {
@@ -78,7 +82,7 @@ class Users extends Component {
 
     return (
       <MainWrapper>
-        <div class="content-wrapper content-wrapper__side-a">
+        <div className="content-wrapper content-wrapper__side-a">
           <Container>
             {
               data.map(({
@@ -111,10 +115,9 @@ class Users extends Component {
           </Container>
         </div>
 
-        <div class="content-wrapper content-wrapper__side-b">
+        <div className="content-wrapper content-wrapper__side-b">
           <Container>
-            <p>Register</p>
-           
+            <Title>Register</Title>
           </Container>
         </div>
       </MainWrapper>

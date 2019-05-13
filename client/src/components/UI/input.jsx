@@ -91,10 +91,10 @@ const Input = ({
         {name}
       </label>
       {required && (
-        <span class="input-control"></span>
+        <span className="input-control"></span>
       )}
       {errorMsg && (
-        <span class="error-msg">{errorMsg}</span>
+        <span className="error-msg">{errorMsg}</span>
       )}
     </InputWrapper>
   );
