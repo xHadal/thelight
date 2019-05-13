@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 
 const InputWrapper = styled.div`
   position: relative;
-  margin: 35px 0;
+  margin: 35px auto;
   max-width: 320px;
   font-family: 'Inter UI';
 
   /* Label */
   > label {
     position: absolute;
-    color: #333;
+    color: #6d6d6d;
     left: 0;
     top: -5px;
     transition: all 0.5s;
@@ -26,26 +26,29 @@ const InputWrapper = styled.div`
   > input {
     background: transparent;
     border: none;
-    border-bottom: 2px solid #333;
+    border-bottom: 1px solid #ccc;
     color: #333;
     width: 100%;
 
-    &:focus + label {
+    ::-webkit-input-placeholder {
+      opacity: 0;
+      transition: inherit;
+    }
+    &:focus + label, &:not(:placeholder-shown) + label  {
       top: -15px;
       transition: all 0.5s;
-      color: #6d6d6d;
     }
 
     ${({ errorMsg }) => {
-      // errorMsg options: undefined, '', 'whatever'
-      if (errorMsg) {
-        if (errorMsg === '') {
-          return 'border-bottom: 2px solid green';
-        }
-        return 'border-bottom: 2px solid red';
+    // errorMsg options: undefined, '', 'whatever'
+    if (errorMsg) {
+      if (errorMsg === '') {
+        return 'border-bottom: 2px solid green';
       }
-      return null;
-    }};
+      return 'border-bottom: 2px solid red';
+    }
+    return null;
+  }};
 
 
     @media only screen and (max-width: 500px),
@@ -53,9 +56,17 @@ const InputWrapper = styled.div`
     }
   }
   /* Error */
-  > span {
+  > span.error-msg {
     color: red;
     margin: 5px 0 0;
+  }
+  >span.input-control{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    left: 0;
+    background: pink;
   }
 `;
 
@@ -68,22 +79,26 @@ const Input = ({
   errorMsg,
   onChange,
 }) => (
-  <InputWrapper errorMsg={errorMsg}>
-    <input
-      name={name}
-      type={type}
-      required={required}
-      labeltext={labelText}
-      onChange={onChange}
-    />
-    <label htmlFor={name}>
-      {name}
-    </label>
-    {errorMsg && (
-      <span>{errorMsg}</span>
-    )}
-  </InputWrapper>
-);
+    <InputWrapper errorMsg={errorMsg}>
+      <input
+        name={name}
+        type={type}
+        required={required}
+        labeltext={labelText}
+        onChange={onChange}
+        placeholder={name}
+      />
+      <label htmlFor={name}>
+        {name}
+      </label>
+      {required && (
+        <span class="input-control"></span>
+      )}
+      {errorMsg && (
+        <span class="error-msg">{errorMsg}</span>
+      )}
+    </InputWrapper>
+  );
 
 Input.defaultProps = {
   required: false,
@@ -91,6 +106,7 @@ Input.defaultProps = {
   labelText: undefined,
   errorMsg: undefined,
   onChange: undefined,
+  placeholder: undefined
 };
 
 Input.propTypes = {

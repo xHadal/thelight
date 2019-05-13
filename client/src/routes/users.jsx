@@ -3,11 +3,28 @@ import styled from 'styled-components';
 import Button from '@/components/UI/button';
 import Input from '@/components/UI/input';
 
-
+const MainWrapper = styled.div`
+  display: flex;
+  height: 100%;
+  >div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow:1; 
+  }
+  >.content-wrapper__side-b{
+    background: #ff4b7d;
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+  }
+  
+`;
 const Container = styled.div`
   text-align: center;
   font-family: 'Inter UI';
 `;
+
 
 class Users extends Component {
   constructor(props) {
@@ -57,35 +74,48 @@ class Users extends Component {
     const { data } = Users;
 
     return (
-      <Container>
-        {
-          data.map(({
-            name,
-            field
-          }) => (
-              <Input
-                name={name}
-                key={field}
-                type="text"
-                onChange={({
-                  target: {
-                    value
-                  }
-                }) => this.handleChange({
-                  field,
-                  value,
-                })}
-              />
-            )
-          )
-        }
-        <Button
-            type="button"
-            onClick={() => this.callApi()}
-        >
-            Aceptar
-        </Button>
-      </Container>
+      <MainWrapper>
+        <div class="content-wrapper content-wrapper__side-a">
+          <Container>
+            {
+              data.map(({
+                name,
+                field
+              }) => (
+                  <Input
+                    name={name}
+                    key={field}
+                    type="text"
+                    required
+                    onChange={({
+                      target: {
+                        value
+                      }
+                    }) => this.handleChange({
+                      field,
+                      value,
+                    })}
+                  />
+                )
+              )
+            }
+            <Button
+              type="button"
+              onClick={() => this.callApi()}
+            >
+              Aceptar
+            </Button>
+          </Container>
+        </div>
+
+        <div class="content-wrapper content-wrapper__side-b">
+          <Container>
+            <p>Register</p>
+           
+          </Container>
+        </div>
+      </MainWrapper>
+
     );
   }
 }
@@ -94,10 +124,10 @@ Users.data = [
   {
     name: 'User Name',
     field: 'firstName'
-  },{
+  }, {
     name: 'User Mail',
     field: 'email',
-  },{
+  }, {
     name: 'User Password',
     field: 'password',
   }
