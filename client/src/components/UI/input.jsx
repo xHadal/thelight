@@ -17,11 +17,9 @@ const InputWrapper = styled.div`
     top: -5px;
     transition: all 0.5s;
     pointer-events: none;
+    font-size: 14px;
   }
-  ::-webkit-input-placeholder {
-    opacity: 0;
-    transition: inherit;
-  }
+ 
   /* Input */
   > input {
     background: transparent;
@@ -29,7 +27,7 @@ const InputWrapper = styled.div`
     border-bottom: 1px solid #ccc;
     color: #333;
     width: 100%;
-
+    
     ::-webkit-input-placeholder {
       opacity: 0;
       transition: inherit;
@@ -37,6 +35,7 @@ const InputWrapper = styled.div`
     &:focus + label, &:not(:placeholder-shown) + label  {
       top: -15px;
       transition: all 0.5s;
+      font-size: 12px;
     }
 
     ${({ errorMsg }) => {

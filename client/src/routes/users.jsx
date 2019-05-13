@@ -5,12 +5,15 @@ import Input from '@/components/UI/input';
 
 const MainWrapper = styled.div`
   display: flex;
-  height: 100%;
+  min-height: 100%;
+  height: 100vh;
   >div{
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-grow:1; 
+    flex-grow:1;
+    flex-basis: 50%;
+    
   }
   >.content-wrapper__side-b{
     background: #ff4b7d;
