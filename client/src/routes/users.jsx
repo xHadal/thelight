@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Button from '@/components/UI/button';
 import Input from '@/components/UI/input';
-/* global? */
+
+
+
+/* Component? */
 const MainWrapper = styled.div`
   display: flex;
+  height: 100vh;
   justify-content: space-between;
   min-height: 100%;
-  height: 100vh;
-
+  
   >div{
-    display: flex;
     align-items: center;
-    justify-content: center;
+    display: flex;
     flex-basis: 50%;
+    justify-content: center;
     transition: all 0.5s; 
   }
 
@@ -28,7 +31,9 @@ const Container = styled.div`
   text-align: center;
   font-family: 'Inter UI';
 `;
-/* global? */
+
+
+/* Component? */
 const Title = styled.h1`
   font-size: 42px;
 `
