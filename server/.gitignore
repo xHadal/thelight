@@ -15,4 +15,3 @@ src/config/*
 package-lock.json
 yarn.lock
 dist
-
