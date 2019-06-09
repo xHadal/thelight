@@ -12,3 +12,4 @@ node_modules/
 .env
 .env.test
 yarn.lock
+dist
