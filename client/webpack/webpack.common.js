@@ -62,6 +62,7 @@ module.exports = {
           ],
           plugins: [
             'react-hot-loader/babel',
+            'styled-components',
           ],
         },
         include: [config.srcPath, config.modulesPath],
