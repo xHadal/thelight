@@ -35,4 +35,4 @@ export default {
 		if (error && error.details) return { error };
 		return { value };
 	}
-}
+};

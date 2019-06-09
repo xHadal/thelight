@@ -3,8 +3,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const path = require('path');
 
-const srcPath = path.resolve(__dirname, 'src');
-const outputPath = path.resolve(__dirname, 'dist');
+const srcPath = path.resolve(__dirname, '../src');
+const outputPath = path.resolve(__dirname, '../dist');
 const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 const modulesPath = path.resolve(__dirname, 'node_modules');
 

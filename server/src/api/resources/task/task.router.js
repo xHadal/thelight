@@ -12,7 +12,7 @@ taskRouter.route('/')
   .get(
     passport.authenticate('jwt', {session: false}),
     taskController.list
-  )
+  );
 
 taskRouter.route('/:id')
   .post(
@@ -30,4 +30,4 @@ taskRouter.route('/:id')
   .get(
     passport.authenticate('jwt', {session: false}),
     taskController.get
-  )
+  );

@@ -1,5 +1,4 @@
 import express from 'express';
-import passport from 'passport';
 import userController from './user.controller';
 
 export const userRouter = express.Router();

@@ -11,4 +11,6 @@ node_modules/
 .yarn-integrity
 .env
 .env.test
-src/build
+dist
+package-lock.json
+yarn.lock

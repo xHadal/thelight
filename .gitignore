@@ -11,3 +11,4 @@ node_modules/
 .yarn-integrity
 .env
 .env.test
+yarn.lock

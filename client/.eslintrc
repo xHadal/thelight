@@ -15,7 +15,8 @@
         "sourceType": "module"
     },
     "plugins": [
-        "import"
+        "import",
+        "html"
     ],
     "rules": {
         "function-paren-newline": ["error", "consistent"],

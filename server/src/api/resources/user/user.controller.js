@@ -1,7 +1,6 @@
 import userService from './user.service';
 import User from './user.model';
 import jwt from '../../helpers/jwt';
-import { resolve } from 'url';
 
 export default {
 	signup(req, res) {
@@ -23,7 +22,7 @@ export default {
 	login(req, res) {
 		const { value, error } = userService.validateLogin(req.body);
 		if (error) return res.status(400).json(error);
-		const user = User.findOne({email: value.email})
+		User.findOne({email: value.email})
 			.then((user) => {
 				if (!user) {
 					return res.status(401).json({ err : 'unauthorized' });
@@ -36,9 +35,10 @@ export default {
 				return res.json({ token }); 
 
 			})
+			// eslint-disable-next-line no-console
 			.catch(err => console.log(err));
 	},
 	authenticate(req, res) {
 		return res.json(req.user);
 	}
-}
+};
