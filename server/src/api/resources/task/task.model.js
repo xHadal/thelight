@@ -1,6 +1,12 @@
 import mongoose from 'mongoose';
 
-const { Schema } = mongoose;
+const {
+  Schema,
+  Schema: {
+    Types: ObjectId,
+  },
+} = mongoose;
+
 const taskSchema = new Schema({
   title: {
     type: String,
@@ -24,6 +30,10 @@ const taskSchema = new Schema({
   difficulty: {
     type: Number,
     required: true,
+  },
+  creator: {
+    type: ObjectId,
+    ref: 'User'
   },
   createdAt: {
     type: Date,

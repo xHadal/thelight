@@ -2,9 +2,11 @@ import express from 'express';
 import passport from 'passport';
 import taskController from './task.controller';
 
+
 export const taskRouter = express.Router();
 
-taskRouter.route('/')
+taskRouter
+  .route('/')
   .post(
     passport.authenticate('jwt', {session: false}),
     taskController.add
@@ -14,7 +16,8 @@ taskRouter.route('/')
     taskController.list
   );
 
-taskRouter.route('/:id')
+taskRouter
+  .route('/:id')
   .post(
     passport.authenticate('jwt', {session: false}),
     taskController.add

@@ -19,6 +19,7 @@ export default {
 			.then(token => res.json({ token }))
 			.catch(err => res.status(500).send(err));
 	},
+
 	login(req, res) {
 		const { value, error } = userService.validateLogin(req.body);
 		if (error) return res.status(400).json(error);
@@ -35,9 +36,9 @@ export default {
 				return res.json({ token }); 
 
 			})
-			// eslint-disable-next-line no-console
 			.catch(err => console.log(err));
 	},
+	
 	authenticate(req, res) {
 		return res.json(req.user);
 	}

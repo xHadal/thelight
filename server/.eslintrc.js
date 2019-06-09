@@ -13,11 +13,14 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
-    'linebreak-style': ['error', 'unix'],
+    'function-paren-newline': ['error', 'consistent'],
+    'no-bitwise': 0,
+    'no-console': 0,
+    'no-param-reassign': 0,
+    'no-shadow': 0,
+    'no-underscore-dangle': 0,
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
-    'import/no-commonjs': 'error',
-    "no-console": "off"
-
-  }
+    'import/no-commonjs': 'error'
+  },
 };

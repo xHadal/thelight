@@ -8,13 +8,26 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 export default {
     add(req, res) {
-      const schema = Joi.object().keys({
-        title: Joi.string().required(),
-        description: Joi.string().optional(),
-        category: Joi.string().required(),
-        date: Joi.string().required(),
-        location: Joi.string().optional(),
-        difficulty: Joi.number()
+      const schema = Joi
+        .object()
+        .keys({
+          title: Joi
+            .string()
+            .required(),
+          description: Joi
+            .string()
+            .optional(),
+          category: Joi
+            .string()
+            .required(),
+          date: Joi
+            .string()
+            .required(),
+          location: Joi
+            .string()
+            .optional(),
+          difficulty: Joi
+            .number()
             .integer()
             .min(0)
             .max(5)
@@ -28,6 +41,7 @@ export default {
         .then(() => res.json({ success: true }))
         .catch(err => res.status(500).send(err));
     },
+
     get(req, res) {
       const { id } = req.params;
       if (ObjectId.isValid(id)) {
@@ -54,6 +68,7 @@ export default {
           .then((msg) => res.json({ msg }))
           .catch(err => res.status(500).send(err));
     },
+
     edit(req, res) {
         new Promise((resolve) => {
             resolve('Edit task');
@@ -61,6 +76,7 @@ export default {
           .then((msg) => res.json({ msg }))
           .catch(err => res.status(500).send(err));
     },
+    
     list(req, res) {
         new Promise((resolve) => {
             resolve('List tasks');
