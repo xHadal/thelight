@@ -55,15 +55,24 @@ class Users extends Component {
     });
   }
 
-  callApi() {
+  callApi({
+    firstName,
+    email,
+    password,
+  }) {
     const ctx = this;
+    const body = JSON.stringify({
+      firstName,
+      email,
+      password
+    });
     fetch(`${__API__}users/signup`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state)
+      body,
     })
       .then((resp) => {
         if (!resp.ok) {
@@ -84,10 +93,16 @@ class Users extends Component {
 
   render() {
     const { data } = Users;
+    const {
+      firstName,
+      email,
+      password,
+    } = this.state;
 
     return (
       <MainWrapper>
         <div className="content-wrapper content-wrapper__side-a">
+          {console.log(this.state)}
           <Container>
             {
               data.map(({
@@ -97,7 +112,7 @@ class Users extends Component {
                   <Input
                     name={name}
                     key={field}
-                    type="text"
+                    type={field === 'password' ? 'password' : 'text'}
                     required
                     onChange={({
                       target: {
@@ -113,7 +128,11 @@ class Users extends Component {
             }
             <Button
               type="button"
-              onClick={() => this.callApi()}
+              onClick={() => this.callApi({
+                firstName,
+                email,
+                password,
+              })}
             >
               Aceptar
             </Button>

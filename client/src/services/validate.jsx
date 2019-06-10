@@ -28,7 +28,6 @@ export const validateField = Input => {
           regex = "";
       }
 
-      //console.log(this.userEmail.value);
       if (regex.test(value)) {
         this.userEmail.setState({
           error: false,
@@ -45,7 +44,6 @@ export const validateField = Input => {
 
     /*Render*/
     render() {
-      console.log(Input);
       return <Input validate={this.state} />;
     }
   };
@@ -95,7 +93,6 @@ class Validate extends Component {
         regex = "";
     }
 
-    //console.log(this.userEmail.value);
     if (regex.test(value)) {
       this.userEmail.setState({
         error: false,

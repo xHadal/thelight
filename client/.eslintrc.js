@@ -4,10 +4,7 @@ module.exports = {
     browser: true,
   },
   globals: {
-    __API__: '',
-    __BASENAME__: '',
-    __PRODUCTION__: false,
-    __VERSION__: '',
+    __API__: 'localhost:8079/api/',
   },
   parserOptions: {
     parser: 'babel-eslint',

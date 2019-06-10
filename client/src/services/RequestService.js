@@ -23,7 +23,6 @@ class Fetcher extends Component {
       data: this.props.bodyRequest
     })
       .then(result => {
-        console.log(result);
         this.setState({
           data: result,
           isLoading: false

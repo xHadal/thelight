@@ -18,6 +18,10 @@ module.exports = merge(common, {
     historyApiFallback: {
       disableDotRule: true,
     },
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+    },
     port: 8080,
     stats: 'minimal',
   },

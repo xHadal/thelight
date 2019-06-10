@@ -141,10 +141,9 @@ export default class Navbar extends Component {
 
   toggleClick(e) {
     e.preventDefault();
-    this.setState(
-      { isToggleOn: !this.state.isToggleOn }
-      , () => console.log(this.state.isToggleOn)
-    );
+    this.setState({
+      isToggleOn: !this.state.isToggleOn
+    });
   }
 
   render() {

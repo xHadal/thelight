@@ -1,11 +1,14 @@
+const Webpack = require('webpack');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+
 const config = require('./config');
 
 const basename = process.env.BASENAME || '/';
+const api = process.env.API || 'http://localhost:8079/api/';
 
 
 module.exports = {
@@ -31,6 +34,9 @@ module.exports = {
     },
   },
   plugins: [
+    new Webpack.DefinePlugin({
+      __API__: JSON.stringify(api),
+    }),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       { from: config.assetsPath, to: 'assets' },

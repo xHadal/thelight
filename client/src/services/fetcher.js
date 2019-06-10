@@ -11,7 +11,6 @@ const fetcher = (fetchType, path, bodyRequest) => {
     data: bodyRequest || null
   })
     .then(result => {
-      console.log(result.data);
       return result.data;
     })
     .catch(error => {
