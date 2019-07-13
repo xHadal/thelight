@@ -38,7 +38,7 @@ const Title = styled.h1`
   font-size: 42px;
 `
 
-class Users extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -95,7 +95,7 @@ class Users extends Component {
   }
 
   render() {
-    const { data } = Users;
+    const { data } = Signup;
     const {
       firstName,
       email,
@@ -144,7 +144,7 @@ class Users extends Component {
 
         <div className="content-wrapper content-wrapper__side-b">
           <Container>
-            <Title>Register</Title>
+            <Title>Signup</Title>
           </Container>
         </div>
       </MainWrapper>
@@ -153,7 +153,7 @@ class Users extends Component {
   }
 }
 
-Users.data = [
+Signup.data = [
   {
     name: 'User Name',
     field: 'firstName'
@@ -167,4 +167,4 @@ Users.data = [
 ];
 
 
-export default Users;
+export default Signup;

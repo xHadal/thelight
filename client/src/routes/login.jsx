@@ -38,11 +38,11 @@ const Title = styled.h1`
   font-size: 42px;
 `
 
-class Users extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
+      
       email: '',
       password: '',
       token: '',
@@ -56,17 +56,16 @@ class Users extends Component {
   }
 
   callApi({
-    firstName,
+
     email,
     password,
   }) {
     const ctx = this;
     const body = JSON.stringify({
-      firstName,
       email,
       password
     });
-    fetch(`${__API__}users/signup`, {
+    fetch(`${__API__}users/login`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -95,9 +94,8 @@ class Users extends Component {
   }
 
   render() {
-    const { data } = Users;
+    const { data } = Login;
     const {
-      firstName,
       email,
       password,
     } = this.state;
@@ -132,7 +130,6 @@ class Users extends Component {
             <Button
               type="button"
               onClick={() => this.callApi({
-                firstName,
                 email,
                 password,
               })}
@@ -144,7 +141,7 @@ class Users extends Component {
 
         <div className="content-wrapper content-wrapper__side-b">
           <Container>
-            <Title>Register</Title>
+            <Title>Login</Title>
           </Container>
         </div>
       </MainWrapper>
@@ -153,11 +150,8 @@ class Users extends Component {
   }
 }
 
-Users.data = [
+Login.data = [
   {
-    name: 'User Name',
-    field: 'firstName'
-  }, {
     name: 'User Mail',
     field: 'email',
   }, {
@@ -167,4 +161,4 @@ Users.data = [
 ];
 
 
-export default Users;
+export default Login;
