@@ -46,6 +46,7 @@ class Login extends Component {
       email: '',
       password: '',
       token: '',
+      error: false
     };
   }
 
@@ -97,7 +98,7 @@ class Login extends Component {
     const { data } = Login;
     const {
       email,
-      password,
+      password
     } = this.state;
 
     return (
@@ -136,6 +137,7 @@ class Login extends Component {
             >
               Aceptar
             </Button>
+            {this.state.error &&( <p>User or Password not valid</p>)}
           </Container>
         </div>
 
