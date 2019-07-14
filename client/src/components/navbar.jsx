@@ -161,7 +161,10 @@ export default class Navbar extends Component {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/users/">Users</Link>
+              <Link to="/login/">Login</Link>
+            </li>
+            <li>
+              <Link to="/signup/">Signup</Link>
             </li>
           </ul>
         </Navlist>
