@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+import authUser from '@/redux/actions/auth';
+import store from '@/redux/store/configStore';
+
 import styled from 'styled-components';
 import Button from '@/components/UI/button';
 import Input from '@/components/UI/input';
@@ -38,11 +44,13 @@ const Title = styled.h1`
   font-size: 42px;
 `
 
-class Login extends Component {
+
+
+class Login extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      
+
       email: '',
       password: '',
       token: '',
@@ -57,7 +65,6 @@ class Login extends Component {
   }
 
   callApi({
-
     email,
     password,
   }) {
@@ -85,9 +92,12 @@ class Login extends Component {
           ...ctx.state,
           token,
         });
-        
-        localStorage.setItem('user', token);
-        this.props.history.push('/');
+
+        console.log('HOAA', this.props, token)
+        this.props.authUser(token);
+        //localStorage.setItem('userSessionToken', token);
+        //this.props.history.push('/');
+
       })
       .catch((err) => {
         throw Error('Couldn\'t fetch'.concat(err));
@@ -100,11 +110,14 @@ class Login extends Component {
       email,
       password
     } = this.state;
-
+    console.log('TOKENAZO', this.props.token);
     return (
+
       <MainWrapper>
         <div className="content-wrapper content-wrapper__side-a">
-          {console.log(this.state)}
+          {console.log('LOGIN : ', this)}
+
+          {console.log('LOGIN STATE: ', this.state)}
           <Container>
             {
               data.map(({
@@ -137,7 +150,7 @@ class Login extends Component {
             >
               Aceptar
             </Button>
-            {this.state.error &&( <p>User or Password not valid</p>)}
+            {this.state.error && (<p>User or Password not valid</p>)}
           </Container>
         </div>
 
@@ -162,5 +175,19 @@ Login.data = [
   }
 ];
 
+const mapStateToProps = ({ session: { token } } = state) => {
+  console.log('REDUX STORE:', token)
+  return { token }
+}
 
-export default Login;
+const mapDispatchToProps = { authUser: authUser }
+
+// mapStateToProps = ({
+//   isAuth,
+// }) => ({
+//   isAuth,
+// });
+
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
