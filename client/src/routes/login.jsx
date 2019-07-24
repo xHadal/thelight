@@ -93,7 +93,7 @@ class Login extends React.PureComponent {
           token,
         });
 
-        console.log('HOAA', this.props, token)
+        
         this.props.authUser(token);
         //localStorage.setItem('userSessionToken', token);
         //this.props.history.push('/');

@@ -7,22 +7,24 @@ export default {
 		const { value, error } = userService.validateSignup(req.body);
 		if (error) return res.status(400).json(error);
 		const encryptedPass = userService.encryptPassword(value.password);
+
 		User.create({
 			firstName: value.firstName,
 			email: value.email,
 			password: encryptedPass,
 		})
-			.then(user => {
-				const token = jwt.issue({ id: user._id }, '1d');
-				return token;
-			})
-			.then(token => res.json({ token }))
-			.catch(err => res.status(500).send(err));
+		.then(user => {
+			const token = jwt.issue({ id: user._id }, '1d');
+			return token;
+		})
+		.then(token => res.json({ token }))
+		.catch(err => res.status(500).send(err));
 	},
 
 	login(req, res) {
 		const { value, error } = userService.validateLogin(req.body);
 		if (error) return res.status(400).json(error);
+		
 		User.findOne({email: value.email})
 			.then((user) => {
 				if (!user) {

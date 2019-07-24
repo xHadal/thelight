@@ -1,11 +1,11 @@
 
-const token = localStorage.getItem('userSessionToken');
 
 const authReducerDefaultState = {
-    isAuth: false,
-    token: '',
+    token: localStorage.getItem('user') || '',
+    isAuth: localStorage.getItem('user') ? true : false,
     path: '/'
 };
+
 
 const authReducer = (state = authReducerDefaultState, action) => {
     console.log('AUTH_REDUCER_STATE: ', state)
@@ -14,11 +14,11 @@ const authReducer = (state = authReducerDefaultState, action) => {
     switch (action.type) {
         case 'AUTH_USER':
             if (action.payload.token) {
-                console.log(action);
+                localStorage.setItem('user', action.payload.token)
                 return {
                     ...state,
                     token: action.payload.token,
-                    isAuth: token ? true : false,
+                    isAuth: action.payload.token ? true : false,
                 }
             }
             return state;
