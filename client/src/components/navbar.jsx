@@ -105,26 +105,26 @@ const Navlist = styled.nav`
 
     
     >ul{ 
-    padding-top: 60px;
-      >li{
-        cursor: pointer;
-        flex-grow: 1;
-        text-align: center;
-        &:hover{
-          background: #ff5987;
+      padding-top: 60px;
+        >li{
+          cursor: pointer;
+          flex-grow: 1;
+          text-align: center;
+          &:hover{
+            background: #ff5987;
+          }
+          >a{
+            color: #fff;
+            font-size: 18px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-family: 'Inter UI';
+            display: block;
+            width: 100%;
+            padding: 15px;
+          }
         }
-        >a{
-          color: #fff;
-          font-size: 18px;
-          text-decoration: none;
-          text-transform: uppercase;
-          font-weight: bold;
-          font-family: 'Inter UI';
-          display: block;
-          width: 100%;
-          padding: 15px;
-        }
-      }
     }
 `
 
@@ -160,11 +160,11 @@ export default class Navbar extends Component {
             <li>
               <Link to="/">Home</Link>
             </li>
-            <li>
+            {!isAuth ? <li>
               <Link to="/login/">Login</Link>
-            </li>
+            </li> : null}
             <li>
-              <Link to="/signup/">Signup</Link>
+              <Link to="/light/">Light</Link>
             </li>
           </ul>
         </Navlist>

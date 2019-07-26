@@ -9,9 +9,10 @@ import {
 
 import Navbar from '@/components/navbar';
 import Index from '@/routes/index';
-import Users from '@/routes/users';
 import Login from '@/routes/login';
 import Signup from '@/routes/signup';
+import Light from '@/routes/light';
+
 
 
 
@@ -38,14 +39,6 @@ const Route = connect(({ session: { isAuth, }, }) => {console.log('issssAuth',is
         );
     });
 
-const Root = () => (
-    <Layout>
-        <Switch>
-
-        </Switch>
-    </Layout>
-);
-
 
 
 
@@ -58,7 +51,7 @@ const AppRouter = () => ({
                 <Switch>
                     <Route exact path="/" requiresAuth component={Index} />
                     <Route exact path="/login" requiresNoAuth component={Login} />
-                    <Route exact path="/signup" requiresNoAuth component={Signup} />
+                    <Route exact path="/light" requiresNoAuth component={Light} />
                 </Switch>
             </div>
 

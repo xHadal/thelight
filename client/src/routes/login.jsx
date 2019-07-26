@@ -127,7 +127,7 @@ class Login extends React.PureComponent {
                   <Input
                     name={name}
                     key={field}
-                    type={field === 'password' ? 'password' : 'text'}
+                    type={field}
                     required
                     onChange={({
                       target: {
@@ -175,19 +175,13 @@ Login.data = [
   }
 ];
 
+
+
 const mapStateToProps = ({ session: { token } } = state) => {
   console.log('REDUX STORE:', token)
   return { token }
 }
 
 const mapDispatchToProps = { authUser: authUser }
-
-// mapStateToProps = ({
-//   isAuth,
-// }) => ({
-//   isAuth,
-// });
-
-
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
