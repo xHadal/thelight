@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Nav = styled.div`
 &.visible{
+  >nav{
+    left: 0;
+  }
   >button{
     >div{
       transition-delay: 0s;
@@ -28,9 +32,7 @@ const Nav = styled.div`
     }
     
   }
-  >nav{
-    left: 0;
-  }
+  
 }
 `
 
@@ -130,7 +132,7 @@ const Navlist = styled.nav`
 
 
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = { isToggleOn: false }
@@ -156,16 +158,24 @@ export default class Navbar extends Component {
         </BurgerButton>
         {/* Menu nav */}
         <Navlist>
-          <ul>
+          <ul onClick={this.toggleClick}>
             <li>
               <Link to="/">Home</Link>
             </li>
-            {!isAuth ? <li>
-              <Link to="/login/">Login</Link>
-            </li> : null}
+            {!this.props.isAuth &&
+              <li>
+                <Link to="/login/">Login</Link>
+              </li>
+            }
+            {/* {this.props.isAuth &&
+              <li>
+                <Link to="/light/">Light</Link>
+              </li>
+            } */}
             <li>
-              <Link to="/light/">Light</Link>
-            </li>
+                <Link to="/light/">Light</Link>
+              </li>
+
           </ul>
         </Navlist>
 
@@ -182,3 +192,8 @@ Navbar.defaultProps = {
 Navbar.propTypes = {
   istoggleon: PropTypes.bool
 }
+
+const mapStateToProps = ({ session: { isAuth } } = state) => {
+  return { isAuth };
+}
+export default connect(mapStateToProps)(Navbar);

@@ -1,5 +1,3 @@
-
-
 const authReducerDefaultState = {
     token: localStorage.getItem('user') || '',
     isAuth: localStorage.getItem('user') ? true : false,
@@ -8,9 +6,9 @@ const authReducerDefaultState = {
 
 
 const authReducer = (state = authReducerDefaultState, action) => {
-    console.log('AUTH_REDUCER_STATE: ', state)
+   /*  console.log('AUTH_REDUCER_STATE: ', state)
     console.log('AUTH_REDUCER_ACTION_PAYLOAD: ', action.payload)
-
+ */
     switch (action.type) {
         case 'AUTH_USER':
             if (action.payload.token) {
@@ -26,7 +24,6 @@ const authReducer = (state = authReducerDefaultState, action) => {
         default:
             return { ...state }
     }
-    console.log('AUTH_REDUCER_AFTER: ', state)
 
 
 }

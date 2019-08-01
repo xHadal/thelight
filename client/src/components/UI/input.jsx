@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 
 const InputWrapper = styled.div`
   position: relative;
-  margin: 35px auto;
-  max-width: 320px;
+  margin: 0 auto 50px;
+  max-width: 280px;
   font-family: 'Inter UI';
+  width: 100%;
 
   /* Label */
   > label {
@@ -119,54 +120,3 @@ Input.propTypes = {
 
 export default Input;
 
-
-// export default class Input extends Component {
-//   /* Constructor */
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {
-//       error: this.props.required
-//     };
-//   }
-
-//   componentWillReceiveProps(newProps) {
-//     if (newProps.required !== this.props.required) {
-//       this.setState({ error: newProps.required });
-//       //this.classMethod();
-//     }
-//   }
-
-//   render() {
-//     if (typeof this.props.required !== "undefined") {
-//       //console.log("input validation props" + this.state);
-//       //console.log(this.state.error);
-//       var validationClass = classNames({
-//         [styles.inputError]: this.state.error && this.state.error !== null,
-//         [styles.inputValid]: !this.state.error && this.state.error !== null
-//       });
-//     }
-
-//     return (
-//       <InputWrapper>
-//         <input
-//           className={`${styles.input} ${validationClass}`}
-//           errormsg={this.props.errorMsg}
-//           name={this.props.name}
-//           onChange={this.props.onChange}
-//           placeholder={this.props.placeholder}
-//           ref={inputElement => {
-//             this[this.props.htmlRef] = inputElement;
-//           }}
-//           required={this.props.required}
-//           type={this.props.type}
-//           value={this.props.value}
-//         />
-//         <label htmlFor={this.props.name}>{this.props.labelText}</label>
-//         {this.state.error && (
-//           <span className={styles.errorMsg}>{this.props.errorMsg}</span>
-//         )}
-//       </InputWrapper>
-//     );
-//   }
-// }

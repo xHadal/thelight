@@ -1,21 +1,43 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
+/* Redux */
+import { connect } from 'react-redux';
+import switchLed from '@/redux/actions/light';
+/* UI */
+import ActionButton from '@/components/ui/ActionButton';
+import MainWrapper from '@/components/MainWrapper'
+import ContentWrapper from '@/components/ContentWrapper'
 
-class Lights extends Component {
+
+class Light extends React.PureComponent {
 
     constructor(props) {
         super(props);
-        this.state = {
-            isOn: false
-        }
-
-
+       
     }
 
     render() {
+        console.log('PROPS', this.props.isOn)
+        //const ledStatus = this.props.isOn;
         return (
-            <div><p>Hola</p></div>
-        )
-    }
+            <MainWrapper>
+                <ContentWrapper >
+                    <ActionButton text={this.props.isOn ? 'on': 'off'} isOn={this.props.isOn} clickFn={this.props.switchLed.bind(this,this.props.isOn)}/>
+                </ContentWrapper>
 
+                <ContentWrapper bgColor>
+                    <ActionButton text={this.props.isOn ? 'on': 'off'} color={"white"} isOn={this.props.isOn} clickFn={this.props.switchLed.bind(this,this.props.isOn)} />
+                </ContentWrapper>
+            </MainWrapper>
+        );
+    }
 }
+
+const mapStateToProps = ({ light: { isOn } } = state) => {
+    return { isOn }
+}
+
+
+export default withRouter(
+    connect(mapStateToProps, { switchLed: switchLed })(Light)
+);

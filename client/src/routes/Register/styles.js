@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 const Container = styled.div `
   
+
 .mainWrapper {
   display: flex;
   background: #07010e;

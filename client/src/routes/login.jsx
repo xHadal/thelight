@@ -1,42 +1,17 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
-
+/* Redux */
 import { connect } from 'react-redux';
 import authUser from '@/redux/actions/auth';
-import store from '@/redux/store/configStore';
-
-import styled from 'styled-components';
+/* UI */
 import Button from '@/components/UI/button';
 import Input from '@/components/UI/input';
-
+import MainWrapper from '@/components/MainWrapper'
+import ContentWrapper from '@/components/ContentWrapper'
 
 
 /* Component? */
-const MainWrapper = styled.div`
-  display: flex;
-  height: 100vh;
-  justify-content: space-between;
-  min-height: 100%;
-  
-  >div{
-    align-items: center;
-    display: flex;
-    flex-basis: 50%;
-    justify-content: center;
-    transition: all 0.5s; 
-  }
-
-  >.content-wrapper__side-b{
-    background: #ff4b7d;
-    color: #fff;
-    font-size: 25px;
-    font-weight: bold;
-  }
-`;
-const Container = styled.div`
-  text-align: center;
-  font-family: 'Inter UI';
-`;
 
 
 /* Component? */
@@ -93,9 +68,7 @@ class Login extends React.PureComponent {
           token,
         });
 
-        
         this.props.authUser(token);
-        //localStorage.setItem('userSessionToken', token);
         //this.props.history.push('/');
 
       })
@@ -110,57 +83,51 @@ class Login extends React.PureComponent {
       email,
       password
     } = this.state;
+
     console.log('TOKENAZO', this.props.token);
     return (
 
       <MainWrapper>
-        <div className="content-wrapper content-wrapper__side-a">
-          {console.log('LOGIN : ', this)}
-
-          {console.log('LOGIN STATE: ', this.state)}
-          <Container>
-            {
-              data.map(({
-                name,
-                field
-              }) => (
-                  <Input
-                    name={name}
-                    key={field}
-                    type={field}
-                    required
-                    onChange={({
-                      target: {
-                        value
-                      }
-                    }) => this.handleChange({
-                      field,
-                      value,
-                    })}
-                  />
-                )
+        <ContentWrapper>
+          {
+            data.map(({
+              name,
+              field
+            }) => (
+                <Input
+                  name={name}
+                  key={field}
+                  type={field}
+                  required
+                  onChange={({
+                    target: {
+                      value
+                    }
+                  }) => this.handleChange({
+                    field,
+                    value,
+                  })}
+                />
               )
-            }
-            <Button
-              type="button"
-              onClick={() => this.callApi({
-                email,
-                password,
-              })}
-            >
-              Aceptar
+            )
+          }
+          <Button
+            type="button"
+            onClick={() => this.callApi({
+              email,
+              password,
+            })}
+          >
+            Aceptar
             </Button>
-            {this.state.error && (<p>User or Password not valid</p>)}
-          </Container>
-        </div>
+          {this.state.error && (<p>User or Password not valid</p>)}
+        </ContentWrapper>
 
-        <div className="content-wrapper content-wrapper__side-b">
-          <Container>
-            <Title>Login</Title>
-          </Container>
-        </div>
+        <ContentWrapper bgColor>
+          <Title>Login</Title>
+        </ContentWrapper>
+
       </MainWrapper>
-
     );
   }
 }
@@ -178,7 +145,7 @@ Login.data = [
 
 
 const mapStateToProps = ({ session: { token } } = state) => {
-  console.log('REDUX STORE:', token)
+ 
   return { token }
 }
 
